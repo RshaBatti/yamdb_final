@@ -64,7 +64,7 @@ jobs:
               passphrase: ${{ secrets.PASSPHRASE }}
               port: 22
               source: "nginx/default.conf,./docker-compose.yaml"
-              target: "home/zekist/"
+              target: "./"
 
   deploy:
       runs-on: ubuntu-latest
