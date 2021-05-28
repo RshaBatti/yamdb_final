@@ -63,7 +63,7 @@ jobs:
               key: ${{ secrets.SSH_KEY }}
               passphrase: ${{ secrets.PASSPHRASE }}
               port: 22
-              source: "nginx/default.conf,./docker-compose.yaml, ./.env"
+              source: "nginx/default.conf,./docker-compose.yaml"
               target: "./"
 
   deploy:
