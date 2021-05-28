@@ -51,7 +51,7 @@ jobs:
             push: true
             tags: zekist/yamdb_final:latest
 
-  copy file:
+  copy_file:
       runs-on: ubuntu-latest
       needs: build_and_push_to_docker_hub
       steps:
@@ -64,7 +64,7 @@ jobs:
               key: ${{ secrets.SSH_KEY }}
               passphrase: ${{ secrets.PASSPHRASE }}
               port: 22
-              source: "nginx/default.conf,yamdb_final/docker-compose.yaml"
+              source: "nginx/default.conf,./docker-compose.yaml"
               target: "home/zekist/"
 
   deploy:
