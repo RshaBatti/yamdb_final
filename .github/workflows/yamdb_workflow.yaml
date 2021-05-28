@@ -51,18 +51,21 @@ jobs:
             push: true
             tags: zekist/yamdb_final:latest
 
-  copy file via ssh password:
-      name: copy file via ssh password
-      uses: appleboy/scp-action@master
+  copy file:
+      runs-on: ubuntu-latest
       needs: build_and_push_to_docker_hub
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USER }}
-        key: ${{ secrets.SSH_KEY }}
-        passphrase: ${{ secrets.PASSPHRASE }}
-        port: 22
-        source: "nginx/default.conf,./docker-compose.yaml"
-        target: "home/zekist/"
+      steps:
+          - uses: actions/checkout@master
+          - name: copy file via ssh password
+              uses: appleboy/scp-action@master
+              with:
+                host: ${{ secrets.HOST }}
+                username: ${{ secrets.USER }}
+                key: ${{ secrets.SSH_KEY }}
+                passphrase: ${{ secrets.PASSPHRASE }}
+                port: 22
+                source: "nginx/default.conf,./docker-compose.yaml"
+                target: "home/zekist/"
 
   deploy:
       runs-on: ubuntu-latest
