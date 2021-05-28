@@ -64,7 +64,7 @@ jobs:
               key: ${{ secrets.SSH_KEY }}
               passphrase: ${{ secrets.PASSPHRASE }}
               port: 22
-              source: "nginx/default.conf,./docker-compose.yaml"
+              source: "nginx/default.conf,yamdb_final/docker-compose.yaml"
               target: "home/zekist/"
 
   deploy:
