@@ -39,4 +39,4 @@ docker-compose exec web python manage.py loaddata fixtures.json
 ``` 
 ### Авторы
 После выполнения команд указанных выше приложение будет доступно по адресу:
- _http://localhost/_
+_http://84.252.134.63:81_
