@@ -63,7 +63,7 @@ jobs:
               key: ${{ secrets.SSH_KEY }}
               passphrase: ${{ secrets.PASSPHRASE }}
               port: 22
-              source: "nginx/default.conf,./docker-compose.yaml,static/redoc.yaml"
+              source: "nginx/default.conf,./docker-compose.yaml"
               target: "./"
 
   deploy:
@@ -94,6 +94,7 @@ jobs:
               sudo docker-compose exec -T web python manage.py makemigrations
               sudo docker-compose exec -T web python manage.py migrate
               sudo docker-compose exec -T web python manage.py collectstatic --no-input
+              sudo docker-compose exec -T web python manage.py collectstatic redoc.yaml
 
   send_message:
     runs-on: ubuntu-latest
