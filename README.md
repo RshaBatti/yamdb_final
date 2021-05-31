@@ -49,9 +49,9 @@ sudo docker-compose exec web python manage.py collectstatic --no-input
 sudo docker-compose exec web python manage.py makemigrations 
 sudo docker-compose exec web python manage.py migrate
 ``` 
-В случае размещения приложения на сервере необходимо сделать следующие шаги:
+В случае размещения приложения на сервере? необходимо сделать следующие шаги:
 1. сделать fork репозитория
-2. клонировать код
+2. клонировать код репозитории
 3. в файле nginx/default.conf изменить строку 
 ```
 server_name 84.252.134.63
@@ -71,6 +71,6 @@ server_name <ip вашего сервера>
     image: <адрес образра на Docker hub>
 ```
 5. Запушить изменения на Github
-```
+
 ### Авторы
 Поршнев Кирилл
