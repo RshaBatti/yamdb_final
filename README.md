@@ -11,32 +11,43 @@
 - К проекту по адресу _http://84.252.134.63:81/redoc_ подключена документация API YaMDb. В ней описаны
 шаблоны запросов к API и структура ожидаемых ответов. Для каждого запроса 
 указаны уровни прав доступа: пользовательские роли, которым разрешён запрос.
-- Приложение доступно по адресу 
+- Приложение доступно по адресу _http://84.252.134.63:81_
 ### Технологии
 Python 3.7
 Django 2.2.19
-### Запуск проекта в Docker
-Команда для сборки образа:
+### Запуск проекта
+Для запуска приложения у себя локально на компьютере необходимо:
+1. клонировать код выложенный в репозитории
+2. в файле nginx/default.conf изменить строку 
 ```
-docker-compose up -d --build
+server_name 84.252.134.63
+```
+на
+```
+server_name localhost
+```
+3. в файле docker-compose.yaml изменить строку
+```
+  web:
+    image: zekist/yamdb_final
+```
+на
+```
+  web:
+    build: .
+```
+4. выполнить команду
+```
+sudo docker-compose up -d --build
 ``` 
-Загрузка статики:
+5. выполнить загрузку статики:
 ```
-docker-compose exec web python manage.py collectstatic --no-input
+sudo docker-compose exec web python manage.py collectstatic --no-input
 ```
-Выполнение миграций:
+6. выполнить миграции:
 ```
-docker-compose exec web python manage.py makemigrations titles
-``` 
-Выполните команду ниже и следуйте инструкциям в консоли для создания 
-суперпользователя:
-```
-docker-compose exec web python manage.py createsuperuser
-```
-Для загрузки тестовых данных выполните команду:
-```
-docker-compose exec web python manage.py loaddata fixtures.json
+sudo docker-compose exec web python manage.py makemigrations 
+sudo docker-compose exec web python manage.py migrate
 ``` 
 ### Авторы
-После выполнения команд указанных выше приложение будет доступно по адресу:
-_http://84.252.134.63:81_
+Поршнев Кирилл
